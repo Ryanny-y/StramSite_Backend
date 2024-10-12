@@ -28,6 +28,7 @@ app.use('/', require('./routes/root'));
 app.use('/register', require('./routes/user/register'));
 app.use('/login', require('./routes/user/login'));
 app.use('/refresh', require('./routes/user/refresh'));
+app.use('/logout', require('./routes/user/logout'));
 
 // Error handler
 app.use('*', (req, res) => {
