@@ -22,6 +22,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Public routes
 app.use('/', require('./routes/root'));
 
+// User Routes
+app.use('/register', require('./routes/user/register'));
 
 // Error handler
 app.use('*', (req, res) => {
