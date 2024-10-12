@@ -24,6 +24,7 @@ app.use('/', require('./routes/root'));
 
 // User Routes
 app.use('/register', require('./routes/user/register'));
+app.use('/login', require('./routes/user/login'));
 
 // Error handler
 app.use('*', (req, res) => {

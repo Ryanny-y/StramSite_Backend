@@ -14,6 +14,9 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  refresh_token: {
+    type: String,
+  },
   watchlist: {
     type: mongoose.Schema.Types.ObjectId,
   },
