@@ -8,6 +8,7 @@ const cors = require('cors');
 const connDB = require('./config/conDB')
 const mongoose = require('mongoose');
 const corsOptions = require('./config/corsOptions');
+const cookieParser = require('cookie-parser');
 
 const port = process.env.port || 3500;
 
@@ -15,6 +16,7 @@ connDB();
 
 // Middlewares
 app.use(cors(corsOptions)); // Add Cors Options
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -25,6 +27,7 @@ app.use('/', require('./routes/root'));
 // User Routes
 app.use('/register', require('./routes/user/register'));
 app.use('/login', require('./routes/user/login'));
+app.use('/refresh', require('./routes/user/refresh'));
 
 // Error handler
 app.use('*', (req, res) => {
