@@ -7,12 +7,14 @@ const app = express();
 const cors = require('cors');
 const connDB = require('./config/conDB')
 const mongoose = require('mongoose');
+const corsOptions = require('./config/corsOptions');
+
 const port = process.env.port || 3500;
 
 connDB();
 
 // Middlewares
-app.use(cors()); // Add Cors Options
+app.use(cors(corsOptions)); // Add Cors Options
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
