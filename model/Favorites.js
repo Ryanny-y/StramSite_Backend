@@ -7,11 +7,8 @@ const FavoritesSchema = new Schema({
     required: true
   },
   favorites: [{
-    show_id: {
-      type: String,
-      required: true
-    },
-    _id: false
+    type: String,
+    required: true
   }]
 });
 

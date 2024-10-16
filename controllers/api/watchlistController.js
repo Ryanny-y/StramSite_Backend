@@ -1,5 +1,4 @@
 const Watchlist = require("../../model/Watchlist");
-const User = require("../../model/User");
 
 const getWatchlists = async (req, res) => {
   const { user_id } = req.params;
@@ -7,8 +6,11 @@ const getWatchlists = async (req, res) => {
   if (!user_id)
     return res.status(404).json({ message: `User ${user_id} Not Found!` });
   try {
-    const result = await Watchlist.findOne({ user_id });
-    const watchlist = result.watchlists;
+    const foundList = await Watchlist.findOne({ user_id });
+
+    if(!foundList) return res.status(404).json({'message': 'Watchlist not found'});
+
+    const watchlist = foundList.watchlists;
 
     res.json({ watchlist });
   } catch (error) {
@@ -26,7 +28,7 @@ const addToWatchlist = async (req, res) => {
     const foundList = await Watchlist.findOne({ user_id }).exec();
 
     if (foundList) {
-      const isAdded = foundList.watchlists.find((id) => show_id === id);
+      const isAdded = foundList.watchlists.some(id => show_id === id);
       if (isAdded)
         return res
           .status(409)
@@ -61,7 +63,7 @@ const removeToWatchlist = async (req, res) => {
 
     // check if the show_id is on the watchlist
     const foundShow = foundList.watchlists.some((id) => id === show_id);
-    if (foundShow)
+    if (!foundShow)
       return res.status(404).json({ message: `Show ${show_id} Not Found!` });
 
     const filteredList = foundList.watchlists.filter((id) => id !== show_id);
