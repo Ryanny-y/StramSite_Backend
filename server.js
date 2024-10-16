@@ -32,6 +32,7 @@ app.use('/logout', require('./routes/user/logout'));
 
 // Protected Routes
 app.use('/watchlist', require('./routes/api/watchlist'));
+app.use('/favorites', require('./routes/api/favorites'));
 
 // Error handler
 app.use('*', (req, res) => {
