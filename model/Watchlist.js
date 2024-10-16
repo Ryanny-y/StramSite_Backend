@@ -7,11 +7,8 @@ const WatchlistSchema = new Schema({
     required: true
   },
   watchlists: [{
-    show_id: {
-      type: String,
-      required: true
-    },
-    _id: false
+    type: String,
+    required: true
   }]
 });
 

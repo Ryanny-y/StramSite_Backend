@@ -30,6 +30,9 @@ app.use('/login', require('./routes/user/login'));
 app.use('/refresh', require('./routes/user/refresh'));
 app.use('/logout', require('./routes/user/logout'));
 
+// Protected Routes
+app.use('/watchlist', require('./routes/api/watchlist'));
+
 // Error handler
 app.use('*', (req, res) => {
   res.status(404);
